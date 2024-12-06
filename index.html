@@ -1,0 +1,894 @@
+<html>
+<head>
+  <title>Fashion Categories</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+/* Center the h1 on the page */
+.centered-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px; /* Adjust font size as needed */
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  z-index: -1; /* Place behind the header */
+}
+
+/* Ensure header remains on top */
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px  10px 10px 15px;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Styling for the logo */
+.logo {
+  left: 30%;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: black;
+}
+
+/* Navbar styling */
+.navbar {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar a {
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar a:hover {
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(85, 85, 85, 0.2);
+}
+
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .section {
+      margin: 50px 0;
+    }
+    .section h2 {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+    }
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .category {
+      text-align: center;
+      width: 150px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .category2 {
+      text-align: center;
+      width: 250px;
+      height: 350px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .category:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    .category2:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    .category img {
+      width: 100%;
+      height: auto;
+    }
+    .category2 img {
+      width: 100%;
+      height: auto;
+    }
+    .category p {
+      margin-top: 10px;
+      font-size: 1em;
+      font-weight: bold;
+    }
+    .divider {
+      width: 100%;
+      height: 2px;
+      background-color: #e0e0e0;
+      margin: 50px 0;
+    }
+    .accessories-section {
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px 0;
+    }
+    .accessories-section::-webkit-scrollbar {
+      display: none;
+    }
+    .accessory-item {
+      text-align: center;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .accessory-item:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    .accessory-item img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .accessory-item div {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .arrow {
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+      user-select: none;
+    }
+    .arrow:hover {
+      color: #555;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .categories {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px 0;
+    }
+    .category {
+      text-align: center;
+    }
+    .category img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+    }
+    .category-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background-color: #e0e0e0;
+      margin: 20px 0;
+    }
+    @media screen and (max-width: 768px) {
+      .categories {
+        gap: 20px;
+      }
+      .category {
+        width: calc(50% - 20px);
+      }
+      .accessories-section {
+        padding: 10px 0;
+        gap: 10px;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      .category {
+        width: 100px;
+      }
+      .accessory-item img {
+        width: 80px;
+        height: 80px;
+      }
+      .arrow {
+        font-size: 18px;
+      }
+    }
+    .container3 {
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .product {
+            width: 23%;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+        .product-info {
+            padding: 10px;
+            text-align: left;
+        }
+        .product-info h3 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .product-info p {
+            font-size: 14px;
+            color: #333;
+        }
+        .product-info .price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+        }
+        .product-info .price span {
+            font-size: 14px;
+            color: #666;
+        }
+        .product-icons {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+        .product-icons i {
+            margin: 0 5px;
+            color: #666;
+        }
+        @media (max-width: 768px) {
+            .product {
+                width: 48%;
+            }
+        }
+        @media (max-width: 480px) {
+            .product {
+                width: 100%;
+            }
+        }
+        .footer {
+            width: 100%;
+            background-color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 20px;
+        }
+        .footer-column {
+            flex: 1;
+            margin: 0 10px;
+        }
+        .footer-column h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-column ul li {
+            margin-bottom: 8px;
+        }
+        .footer-column ul li a {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+        }
+        .footer-social {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .footer-social a {
+            margin: 0 10px;
+            color: #000;
+            font-size: 20px;
+        }
+        .footer-payment {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .footer-payment img {
+            margin: 0 5px;
+        }
+        .footer-bottom {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 20px;
+        }
+        .live-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        .live-chat img {
+            width: 50px;
+            height: 50px;
+        }
+        @media (max-width: 768px) {
+          header {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo {
+    text-align: center;
+    margin-bottom: 15px; /* Adjust space between logo and navbar */
+  }
+  
+  .navbar {
+    display: none; /* Hide the navbar on mobile */
+  }
+}
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-column {
+                margin: 10px 0;
+            }
+        
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">BK STORE</div>
+    <nav class="navbar">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  
+  <div class="container">
+    <div class="section">
+      <h2>Unstitched</h2>
+      <div class="categories">
+        <div class="category">
+          <img alt="Two women wearing printed unstitched clothes" height="150" src="https://storage.googleapis.com/a1aa/image/KobN7MiGAcboChozclP5k5g5B7UQRzCfeCDfOU5YjtpAHhvnA.jpg" />
+          <p>PRINTED</p>
+        </div>
+        <div class="category">
+          <img alt="Two women wearing embroidered unstitched clothes" height="150" src="https://storage.googleapis.com/a1aa/image/TlSvZqffkYtuFkkkZjmze1wXhYWJ3Tp6MhcRKrIXJYoSHhvnA.jpg" />
+          <p>EMBROIDERED</p>
+        </div>
+        <div class="category">
+          <img alt="Two women wearing winter unstitched clothes" height="150" src="https://storage.googleapis.com/a1aa/image/FQOeTmtFrvXidCzakjAVb5jARis80oSkCfiKQt4VhvfWHhvnA.jpg" />
+          <p>WINTER</p>
+        </div>
+        <div class="category">
+          <img alt="A woman wearing velvet unstitched clothes" height="150" src="https://storage.googleapis.com/a1aa/image/dmd9cesZMiVdFKzkh0jHZs8JJXJfQAHKckj2dCeSfN2KOCfeE.jpg" />
+          <p>VELVET</p>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+      <h2>Women Wear</h2>
+      <div class="categories">
+        <div class="category">
+          <img alt="A woman wearing daily wear clothes" height="150" src="https://storage.googleapis.com/a1aa/image/1fg5NVAlEeuAwk6iZbejbSVus6UIgR22jVhqbPqEl7QOHhvnA.jpg" />
+          <p>DAILY WEAR</p>
+        </div>
+        <div class="category">
+          <img alt="A woman wearing glam clothes" height="150" src="https://storage.googleapis.com/a1aa/image/FkpLqIGEsp4cJ5esCV6iA6INvlLZvMD0biDzQuX7VVjtR47JA.jpg" />
+          <p>GLAM</p>
+        </div>
+        <div class="category">
+          <img alt="A woman wearing signature clothes" height="150" src="https://storage.googleapis.com/a1aa/image/fUEefkK2gseaQSt4GLXlpyEnDfr9qxHDelSefRMSeCNgGHhvnA.jpg" />
+          <p>SIGNATURE</p>
+        </div>
+        <div class="category">
+          <img alt="Two women wearing formal clothes" height="150" src="https://storage.googleapis.com/a1aa/image/hSnOtTeKhl3hH6zueei5g1i3e0T5b3K7MTIGufJmC8O5bEe9E.jpg" />
+          <p>FORMAL</p>
+        </div>
+        <div class="category">
+          <img alt="A woman wearing co-ords" height="150" src="https://storage.googleapis.com/a1aa/image/bxlpvWNfbpXodS5jkeGPPxMJzACmcpMwVu9bSZCDWbBdjw3TA.jpg" />
+          <p>CO-ORDS</p>
+        </div>
+        <div class="category">
+          <img alt="A woman wearing eastern tops" height="150" src="https://storage.googleapis.com/a1aa/image/TYnpmkdCZOLXJNWYd7ZPG6znJwPS5vpTDALrKJHqAJB7I89E.jpg" />
+          <p>EASTERN TOPS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container2">
+    <div class="container2">
+      <div class="divider"></div>
+      <div class="categories">
+        <div class="category2">
+         <a href="mensection.html"> <img alt="Two men wearing traditional clothing" height="200" src="https://storage.googleapis.com/a1aa/image/dGEif8sqbcU9BKyUXS8su5vHJ1faoYL55fBZ1FRnoa9UNivnA.jpg" width="300"/> </a>
+          <div class="category-title">MEN</div>
+        </div>
+        <div class="category2">
+          <a href="Girls section.html"> <img alt="Two girls wearing traditional clothing" height="200" src="https://storage.googleapis.com/a1aa/image/ZzRaDnVFq0Y4O9rr257P5JeYXFiyHNXUWlBhfz66pSgpGx3TA.jpg" width="300"/></a>
+          <div class="category-title">GIRLS</div>
+        </div>
+      </div>
+
+      
+      <div class="divider"></div>
+    </div>
+    <div class="accessories-section">
+      <div class="arrow">
+        <i class="fas fa-chevron-left"></i>
+      </div>
+      <div class="accessory-item">
+        <img alt="Wallet" height="100" src="https://storage.googleapis.com/a1aa/image/llNif0Ca9mRiXiVJjnQW4JvKAhJV01URxlANb1PjOa7QV47JA.jpg" width="100"/>
+        <div>Wallets</div>
+      </div>
+      <div class="accessory-item">
+        <img alt="Muffler" height="100" src="https://storage.googleapis.com/a1aa/image/46fcrLaMt6R0camOINdvhKGg9ljnf7DDtMSELt6CGwWgqw3TA.jpg" width="100"/>
+        <div>Mufflers</div>
+      </div>
+      <div class="accessory-item">
+        <img alt="Scarf" height="100" src="https://storage.googleapis.com/a1aa/image/ZvvxetektqlB9ktZ6z1QARRdyXe627f7OD56hYeHeEbdqK89E.jpg" width="100"/>
+        <div>Scarves</div>
+      </div>
+      <div class="accessory-item">
+        <img alt="Dupatta" height="100" src="https://storage.googleapis.com/a1aa/image/n5odzMUGG2bQJNHNX0GgZQUDR5TJDqBZpBe9nBmlcYfkqw3TA.jpg" width="100"/>
+        <div>Dupattas</div>
+      </div>
+      <div class="accessory-item">
+        <img alt="Footwear" height="100" src="https://storage.googleapis.com/a1aa/image/fQHwIgoRbfkM8klBeRzwJo2HbH0uC5opSeJj1r7OZcy4pCfeE.jpg" width="100"/>
+        <div>Footwear</div>
+      </div>
+      <div class="accessory-item">
+        <img alt="Jewellery" height="100" src="https://storage.googleapis.com/a1aa/image/e73wwpNp8V0GSK0GtfSFHEd7yCvsn4hVKCKiyTiug0yoqw3TA.jpg" width="100"/>
+        <div>Jewellery</div>
+      </div>
+      <div class="accessory-item">
+        <img alt="Watch" height="100" src="https://storage.googleapis.com/a1aa/image/XaX9b53bEQ5yN9hOpfRZ9ynOksPmSb6JjtM0jevXxy6mqw3TA.jpg" width="100"/>
+        <div>Watches</div>
+      </div>
+      <div class="accessory-item">
+        <img alt="Watch" height="100" src="https://storage.googleapis.com/a1aa/image/XaX9b53bEQ5yN9hOpfRZ9ynOksPmSb6JjtM0jevXxy6mqw3TA.jpg" width="100"/>
+        <div>Watches</div>
+      </div>
+      <div class="accessory-item">
+        <img alt="Watch" height="100" src="https://storage.googleapis.com/a1aa/image/XaX9b53bEQ5yN9hOpfRZ9ynOksPmSb6JjtM0jevXxy6mqw3TA.jpg" width="100"/>
+        <div>Watches</div>
+      </div>
+      <div class="arrow">
+        <i class="fas fa-chevron-right"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="container3">
+    <div class="title">
+     New Arrivals
+    </div>
+    <div class="products">
+     <div class="product">
+      <img alt="Model wearing a dyed color block stone co-ord set in yellow" height="400" src="https://storage.googleapis.com/a1aa/image/VeyDfNSkD5jSokuJ2zRaIwkB43o2XrHsEg8LSaRvjEe07hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Stone Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 3,999
+       </p>
+      </div>
+ 
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block marina co-ord set in pink" height="400" src="https://storage.googleapis.com/a1aa/image/7A5UeDTzT42aO6esf2BPSVatkLMMLIWm8tPkulB1TIsw7hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Marina Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 4,299
+       </p>
+      </div>
+  
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block marina co-ord set in black" height="400" src="https://storage.googleapis.com/a1aa/image/dATjXyIZeL0uKKWECrYEbLm97AVEvuIfsVbhxersaiE27hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Marina Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 4,499
+       </p>
+      </div>
+    
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block crepe co-ord set in beige" height="400" src="https://storage.googleapis.com/a1aa/image/QvRgZiJ8gfxaSaKVYIN1II9IfK1c1DEOW28O4eI6r4Lu7hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Crepe Co-Ord Set
+       </h3>
+       <p class="price">
+        From Rs. 3,699
+       </p>
+      </div>
+     
+     </div>
+    </div>
+   </div>
+
+
+   <div class="container3">
+  
+    <div class="products">
+     <div class="product">
+      <img alt="Model wearing a dyed color block stone co-ord set in yellow" height="400" src="https://storage.googleapis.com/a1aa/image/VeyDfNSkD5jSokuJ2zRaIwkB43o2XrHsEg8LSaRvjEe07hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Stone Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 3,999
+       </p>
+      </div>
+ 
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block marina co-ord set in pink" height="400" src="https://storage.googleapis.com/a1aa/image/7A5UeDTzT42aO6esf2BPSVatkLMMLIWm8tPkulB1TIsw7hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Marina Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 4,299
+       </p>
+      </div>
+  
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block marina co-ord set in black" height="400" src="https://storage.googleapis.com/a1aa/image/dATjXyIZeL0uKKWECrYEbLm97AVEvuIfsVbhxersaiE27hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Marina Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 4,499
+       </p>
+      </div>
+    
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block crepe co-ord set in beige" height="400" src="https://storage.googleapis.com/a1aa/image/QvRgZiJ8gfxaSaKVYIN1II9IfK1c1DEOW28O4eI6r4Lu7hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Crepe Co-Ord Set
+       </h3>
+       <p class="price">
+        From Rs. 3,699
+       </p>
+      </div>
+     
+     </div>
+    </div>
+   </div>
+
+
+   <div class="container3">
+  
+    <div class="products">
+     <div class="product">
+      <img alt="Model wearing a dyed color block stone co-ord set in yellow" height="400" src="https://storage.googleapis.com/a1aa/image/VeyDfNSkD5jSokuJ2zRaIwkB43o2XrHsEg8LSaRvjEe07hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Stone Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 3,999
+       </p>
+      </div>
+ 
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block marina co-ord set in pink" height="400" src="https://storage.googleapis.com/a1aa/image/7A5UeDTzT42aO6esf2BPSVatkLMMLIWm8tPkulB1TIsw7hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Marina Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 4,299
+       </p>
+      </div>
+  
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block marina co-ord set in black" height="400" src="https://storage.googleapis.com/a1aa/image/dATjXyIZeL0uKKWECrYEbLm97AVEvuIfsVbhxersaiE27hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Marina Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 4,499
+       </p>
+      </div>
+    
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block crepe co-ord set in beige" height="400" src="https://storage.googleapis.com/a1aa/image/QvRgZiJ8gfxaSaKVYIN1II9IfK1c1DEOW28O4eI6r4Lu7hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Crepe Co-Ord Set
+       </h3>
+       <p class="price">
+        From Rs. 3,699
+       </p>
+      </div>
+     
+     </div>
+    </div>
+   </div>
+
+
+   <div class="container3">
+  
+    <div class="products">
+     <div class="product">
+      <img alt="Model wearing a dyed color block stone co-ord set in yellow" height="400" src="https://storage.googleapis.com/a1aa/image/VeyDfNSkD5jSokuJ2zRaIwkB43o2XrHsEg8LSaRvjEe07hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Stone Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 3,999
+       </p>
+      </div>
+ 
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block marina co-ord set in pink" height="400" src="https://storage.googleapis.com/a1aa/image/7A5UeDTzT42aO6esf2BPSVatkLMMLIWm8tPkulB1TIsw7hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Marina Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 4,299
+       </p>
+      </div>
+  
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block marina co-ord set in black" height="400" src="https://storage.googleapis.com/a1aa/image/dATjXyIZeL0uKKWECrYEbLm97AVEvuIfsVbhxersaiE27hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Marina Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 4,499
+       </p>
+      </div>
+    
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block crepe co-ord set in beige" height="400" src="https://storage.googleapis.com/a1aa/image/QvRgZiJ8gfxaSaKVYIN1II9IfK1c1DEOW28O4eI6r4Lu7hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Crepe Co-Ord Set
+       </h3>
+       <p class="price">
+        From Rs. 3,699
+       </p>
+      </div>
+     
+     </div>
+    </div>
+   </div>
+
+
+   <div class="container3">
+  
+    <div class="products">
+     <div class="product">
+      <img alt="Model wearing a dyed color block stone co-ord set in yellow" height="400" src="https://storage.googleapis.com/a1aa/image/VeyDfNSkD5jSokuJ2zRaIwkB43o2XrHsEg8LSaRvjEe07hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Stone Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 3,999
+       </p>
+      </div>
+ 
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block marina co-ord set in pink" height="400" src="https://storage.googleapis.com/a1aa/image/7A5UeDTzT42aO6esf2BPSVatkLMMLIWm8tPkulB1TIsw7hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Marina Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 4,299
+       </p>
+      </div>
+  
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block marina co-ord set in black" height="400" src="https://storage.googleapis.com/a1aa/image/dATjXyIZeL0uKKWECrYEbLm97AVEvuIfsVbhxersaiE27hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Marina Co-Ord Set
+       </h3>
+       <p class="price">
+        Rs. 4,499
+       </p>
+      </div>
+    
+     </div>
+     <div class="product">
+      <img alt="Model wearing a dyed color block crepe co-ord set in beige" height="400" src="https://storage.googleapis.com/a1aa/image/QvRgZiJ8gfxaSaKVYIN1II9IfK1c1DEOW28O4eI6r4Lu7hvnA.jpg" width="300"/>
+      <div class="product-info">
+       <h3>
+        Dyed Color Block Crepe Co-Ord Set
+       </h3>
+       <p class="price">
+        From Rs. 3,699
+       </p>
+      </div>
+     
+     </div>
+    </div>
+   </div>
+
+
+   <div class="footer">
+    <div class="footer-content">
+     <div class="footer-column">
+      <h3>
+       CUSTOMER CARE
+      </h3>
+      <ul>
+       <li>
+        <a href="#">
+         ORDER TRACKING
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         SHIPPING &amp; HANDLING
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         EXCHANGE POLICY
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         ORDER CANCELLATION POLICY
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         PRIVACY POLICY
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         TERMS OF USE
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         FAQ'S
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="footer-column">
+      <h3>
+       INFORMATION
+      </h3>
+      <ul>
+       <li>
+        <a href="#">
+         ABOUT US
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         CONTACT US
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         CAREERS
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         STORE LOCATOR
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         LIMELIGHT TRENDS
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div class="footer-social">
+     <a href="#">
+      <i class="fab fa-facebook-f">
+      </i>
+     </a>
+     <a href="#">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+     <a href="#">
+      <i class="fab fa-youtube">
+      </i>
+     </a>
+    </div>
+    
+    <div class="footer-bottom">
+    Create By Muhammad Bakhtawar Khan 
+    </div>
+   </div>
+   <div class="live-chat">
+    <img alt="Live chat icon" height="50" src="https://storage.googleapis.com/a1aa/image/aCgCBDdZlP7HCxAfnNmUeGCymVvqmlg3eJmOWNYS9rFaajvnA.jpg" width="50"/>
+   </div>
+</body>
+</html>
+
+
